@@ -2,7 +2,7 @@ from discord.ext import commands
 import requests
 
 description = '''Bitcoin [BTC] price bot.'''
-bot = commands.Bot(command_prefix='$', description=description)
+bot = commands.Bot(command_prefix='!', description=description)
 
 BOT_USER_TOKEN = "MzA0MjAzODM3MDYzODIzMzYx.C9jUMw.O0rBBOEmWU3cQuEhz0QE-850rZs"
 
