@@ -1,10 +1,9 @@
 from discord.ext import commands
 import requests
+from bot_config import BOT_USER_TOKEN
 
 description = '''Bitcoin [BTC] price bot.'''
 bot = commands.Bot(command_prefix='!', description=description)
-
-BOT_USER_TOKEN = "MzA0MjAzODM3MDYzODIzMzYx.C9jUMw.O0rBBOEmWU3cQuEhz0QE-850rZs"
 
 @bot.event
 async def on_ready():
@@ -22,3 +21,4 @@ async def btc(currency : str):
     await bot.say(btc['symbol'] + ' ' + str(btc['last']))
 
 bot.run(BOT_USER_TOKEN)
+
