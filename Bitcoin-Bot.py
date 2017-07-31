@@ -13,11 +13,15 @@ async def on_ready():
     print('------')
 
 @bot.command()
-async def btc(currency : str):
+async def btc():
     """fetches bitcoin price."""
     url = 'https://blockchain.info/ticker'
     resp = requests.get(url)
-    btc = resp.json()[currency]
-    await bot.say(btc['symbol'] + ' ' + str(btc['last']))
+    btc = resp.json()['USD']
+    # btc = resp.json()[currency]
+    await bot.say('Last:\t**' + btc['symbol'] + str(btc['last'])
+                  + '**\nBuy:\t**' + btc['symbol'] + str(btc['buy'])
+                  + '**\nSell:\t**' + btc['symbol'] + str(btc['sell']) + '**')
 
 bot.run(BOT_USER_TOKEN)
+
