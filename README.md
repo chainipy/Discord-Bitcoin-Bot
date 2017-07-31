@@ -1,4 +1,4 @@
-# Discord-Bitcon-Bot
+# Discord-Bitcoin-Bot
 Bitcoin [BTC] price bot. 
 
 example: !btc USD
