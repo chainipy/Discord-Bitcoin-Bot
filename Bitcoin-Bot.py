@@ -17,11 +17,31 @@ async def btc():
     """fetches bitcoin price."""
     url = 'https://blockchain.info/ticker'
     resp = requests.get(url)
-    btc = resp.json()['USD']
+    btcprice = resp.json()['USD']
     # btc = resp.json()[currency]
-    await bot.say('Last:\t**' + btc['symbol'] + str(btc['last'])
-                  + '**\nBuy:\t**' + btc['symbol'] + str(btc['buy'])
-                  + '**\nSell:\t**' + btc['symbol'] + str(btc['sell']) + '**')
+    await bot.say('Last:\t**' + btcprice['symbol'] + str(btcprice['last'])
+                  + '**\nBuy:\t**' + btcprice['symbol'] + str(btcprice['buy'])
+                  + '**\nSell:\t**' + btcprice['symbol'] + str(btcprice['sell']) + '**')
+
+@bot.command()
+async def price(currency : str):
+    """fetches bitcoin price."""
+    currency = currency.upper()
+    url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + currency + '&tsyms=BTC,USD'
+    resp = requests.get(url)
+    rdata = resp.json()
+    if "Response" in rdata:
+        if rdata["Response"] == "Error":
+            return
+    #display = rdata["DISPLAY"]
+
+    btcprice = rdata["DISPLAY"][currency]['BTC']
+    usdprice = rdata["DISPLAY"][currency]['USD']
+
+    await bot.say("Current price for **" + currency + "**\n"
+                  + 'Last:\t\t**' + str(btcprice['PRICE']) + " (" + str(usdprice['PRICE']) + ")**\n"
+                  + 'Volume (24h):\t**' + str(btcprice['VOLUME24HOURTO']) + " (" + str(usdprice['VOLUME24HOURTO']) + ")**\n"
+                  + 'Change (24h):\t**' + str(btcprice['CHANGE24HOUR']) + '**')
 
 bot.run(BOT_USER_TOKEN)
 
