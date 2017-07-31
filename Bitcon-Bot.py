@@ -21,4 +21,3 @@ async def btc(currency : str):
     await bot.say(btc['symbol'] + ' ' + str(btc['last']))
 
 bot.run(BOT_USER_TOKEN)
-
