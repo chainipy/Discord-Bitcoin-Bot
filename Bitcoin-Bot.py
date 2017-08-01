@@ -17,7 +17,7 @@ async def on_ready():
 async def hardfork():
     import datetime
 
-    delta = datetime.datetime(2017, 8, 1, 7, 20) - datetime.datetime.now()
+    delta = datetime.datetime(2017, 8, 1, 12, 20) - datetime.datetime.now()
     seconds = (delta).total_seconds()
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
