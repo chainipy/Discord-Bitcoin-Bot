@@ -13,16 +13,16 @@ async def on_ready():
     print(bot.user.id)
     print('------')
 
-@bot.command()
-async def hardfork():
-    import datetime
-
-    delta = datetime.datetime(2017, 8, 1, 12, 20) - datetime.datetime.now()
-    seconds = (delta).total_seconds()
-    m, s = divmod(seconds, 60)
-    h, m = divmod(m, 60)
-    timestamp = "**%d** Hours **%02d** Minutes **%02d** Seconds" % (h, m, s)
-    await bot.say("Time until hardfork: " + timestamp)
+# @bot.command()
+# async def hardfork():
+#     import datetime
+#
+#     delta = datetime.datetime(2017, 8, 1, 12, 20) - datetime.datetime.now()
+#     seconds = (delta).total_seconds()
+#     m, s = divmod(seconds, 60)
+#     h, m = divmod(m, 60)
+#     timestamp = "**%d** Hours **%02d** Minutes **%02d** Seconds" % (h, m, s)
+#     await bot.say("Time until hardfork: " + timestamp)
 
 @bot.command()
 async def marketcap():
