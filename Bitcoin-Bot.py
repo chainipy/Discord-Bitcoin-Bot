@@ -38,7 +38,7 @@ async def marketcap():
     # active_markets = rdata["active_markets"]
 
     await bot.say("Current market cap **$" + "{:,}".format(market_cap) + "**\n"
-                  + 'Volume (24h):\t\t**' + "{:,}".format(market_vol) + "**\n"
+                  + 'Volume (24h):\t\t**$' + "{:,}".format(market_vol) + "**\n"
                   + 'Bitcoin % of Market:\t**' + str(bitcoin_percent) + "%**\n")
 
 
