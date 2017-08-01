@@ -25,6 +25,24 @@ async def hardfork():
     await bot.say("Time until hardfork: " + timestamp)
 
 @bot.command()
+async def marketcap():
+    url = 'https://api.coinmarketcap.com/v1/global/'
+    resp = requests.get(url)
+    rdata = resp.json()
+
+    market_cap = rdata["total_market_cap_usd"]
+    market_vol = rdata["total_24h_volume_usd"]
+    bitcoin_percent = rdata["bitcoin_percentage_of_market_cap"]
+    # active_currencies = rdata["active_currencies"]
+    # active_assets = rdata["active_assets"]
+    # active_markets = rdata["active_markets"]
+
+    await bot.say("Current market cap **$" + "{:,}".format(market_cap) + "**\n"
+                  + 'Volume (24h):\t\t**' + "{:,}".format(market_vol) + "**\n"
+                  + 'Bitcoin % of Market:\t**' + str(bitcoin_percent) + "%**\n")
+
+
+@bot.command()
 async def btc():
     """fetches bitcoin price."""
     url = 'https://blockchain.info/ticker'
