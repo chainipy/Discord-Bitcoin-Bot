@@ -88,7 +88,8 @@ async def price(currency : str):
         await bot.say("Current price for **" + currency + "**\n"
                       + 'Last:\t\t**' + str(btcprice['PRICE']) + " (" + str(usdprice['PRICE']) + ")**\n"
                       + 'Volume (24h):\t**' + str(btcprice['VOLUME24HOURTO']) + "**\n"
-                      + 'Change (24h):\t**' + str(btcprice['CHANGE24HOUR']) + " (" + str(btcprice['CHANGEPCT24HOUR']) + '%)**')
+                      + 'Change (24h):\t**' + str(btcprice['CHANGE24HOUR']) + " (" + str(btcprice['CHANGEPCT24HOUR']) + '%)**\n'
+                      + 'Market Cap:\t**' + str(btcprice['MKTCAP']) + " (" + str(usdprice['MKTCAP']) + ")**")
 
 bot.run(BOT_USER_TOKEN)
 
