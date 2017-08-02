@@ -81,5 +81,21 @@ async def price(currency : str):
                       + 'Change (24h):\t**' + str(btcprice['CHANGE24HOUR']) + " (" + str(btcprice['CHANGEPCT24HOUR']) + '%)**\n'
                       + 'Market Cap:\t**' + str(btcprice['MKTCAP']) + " (" + str(usdprice['MKTCAP']) + ")**")
 
+@bot.command()
+async def magic8ball():
+    import random
+    magicball = {}
+    counter = 0
+
+    ##Read and import config file. Build dictionary containing possible answers
+    file = open("8ball.config")
+    for line in file:
+        magicball.update({counter:line.split("\n")[0]})
+        counter = counter+1
+
+    answerkey = random.randrange(counter)
+
+    await bot.say("Magic 8 Ball says: **" + magicball[answerkey] + "**")
+
 bot.run(BOT_USER_TOKEN)
 
