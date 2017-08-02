@@ -43,17 +43,6 @@ async def marketcap():
 
 
 @bot.command()
-async def btc():
-    """fetches bitcoin price."""
-    url = 'https://blockchain.info/ticker'
-    resp = requests.get(url)
-    btcprice = resp.json()['USD']
-    # btc = resp.json()[currency]
-    await bot.say('Last:\t**' + btcprice['symbol'] + str(btcprice['last'])
-                  + '**\nBuy:\t**' + btcprice['symbol'] + str(btcprice['buy'])
-                  + '**\nSell:\t**' + btcprice['symbol'] + str(btcprice['sell']) + '**')
-
-@bot.command()
 async def price(currency : str):
     """fetches bitcoin price."""
     currency = currency.upper()
@@ -71,7 +60,8 @@ async def price(currency : str):
         await bot.say("Current price for **" + currency + "**\n"
                       + 'Last:\t\t**' + str(usdprice['PRICE']) + "**\n"
                       + 'Volume (24h):\t**' + str(usdprice['VOLUME24HOURTO']) + "**\n"
-                      + 'Change (24h):\t**' + str(usdprice['CHANGE24HOUR']) + " (" + str(usdprice['CHANGEPCT24HOUR']) + '%)**')
+                      + 'Change (24h):\t**' + str(usdprice['CHANGE24HOUR']) + " (" + str(usdprice['CHANGEPCT24HOUR']) + '%)**\n'
+                      + 'Market Cap:\t**' + str(usdprice['MKTCAP']) + "**")
         return
     else:
         url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + currency + '&tsyms=BTC,USD'
