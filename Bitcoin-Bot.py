@@ -104,20 +104,19 @@ async def magic8ball():
 async def git():
     await bot.say("https://github.com/montara/Discord-Bitcoin-Bot")
 
-
-@bot.command(pass_context=True)
-async def rog(ctx):
+    
+def memelord(ctx):
     import random
     import os
     if ctx.message.author.voice.voice_channel:
         channel = ctx.message.author.voice.voice_channel
-        files = os.listdir('sound/')
+        files = os.listdir('sound/' + memelord)
         number = random.randint(0, len(files) - 1)
 
         filename = files[number]
 
         voice = await bot.join_voice_channel(channel)
-        player = voice.create_ffmpeg_player('sound/' + filename)
+        player = voice.create_ffmpeg_player('sound/' + memelord + '/' + filename)
         player.volume = 0.85
         player.start()
     else:
@@ -142,5 +141,15 @@ async def rog(ctx):
         except:
             break
 
-bot.run(BOT_USER_TOKEN)
 
+@bot.command(pass_context=True)
+async def max(ctx):
+    memelord(ctx, 'zedomax')
+
+
+@bot.command(pass_context=True)
+async def rog(ctx):
+    memelord(ctx, 'rog')
+
+
+bot.run(BOT_USER_TOKEN)
