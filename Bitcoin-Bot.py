@@ -118,6 +118,7 @@ async def rog(ctx):
 
         voice = await bot.join_voice_channel(channel)
         player = voice.create_ffmpeg_player('sound/' + filename)
+        player.volume = 0.85
         player.start()
     else:
         await bot.say('You\'re not in a voice channel!')
