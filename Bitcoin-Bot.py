@@ -107,11 +107,17 @@ async def git():
 
 @bot.command(pass_context=True)
 async def rog(ctx):
+    import random
+    import os
     if ctx.message.author.voice.voice_channel:
         channel = ctx.message.author.voice.voice_channel
+        files = os.listdir('sound/')
+        number = random.randint(0, len(files) - 1)
+
+        filename = files[number]
 
         voice = await bot.join_voice_channel(channel)
-        player = voice.create_ffmpeg_player('sound/500.mp3')
+        player = voice.create_ffmpeg_player('sound/' + filename)
         player.start()
     else:
         await bot.say('You\'re not in a voice channel!')
