@@ -1,10 +1,12 @@
+import discord
 from discord.ext import commands
 import requests
 from bot_config import BOT_USER_TOKEN
 
-
 description = '''Bitcoin [BTC] price bot.'''
 bot = commands.Bot(command_prefix='!', description=description)
+
+
 
 @bot.event
 async def on_ready():
@@ -96,6 +98,42 @@ async def magic8ball():
     answerkey = random.randrange(counter)
 
     await bot.say("Magic 8 Ball says: **" + magicball[answerkey] + "**")
+
+
+@bot.command()
+async def git():
+    await bot.say("https://github.com/montara/Discord-Bitcoin-Bot")
+
+
+@bot.command(pass_context=True)
+async def rog(ctx):
+    if ctx.message.author.voice.voice_channel:
+        channel = ctx.message.author.voice.voice_channel
+
+        voice = await bot.join_voice_channel(channel)
+        player = voice.create_ffmpeg_player('sound/500.mp3')
+        player.start()
+    else:
+        await bot.say('You\'re not in a voice channel!')
+
+    # if ctx.message.author.voice.voice_channel:
+    #     channel = ctx.message.author.voice.voice_channel
+    #     try:
+    #         voice = await bot.join_voice_channel(channel)
+    #         player = voice.create_ffmpeg_player(
+    #             'sound/500.mp3')
+    #         player.start()
+    #     except:
+    #         pass
+    # else:
+    #     await bot.say('You\'re not in a voice channel!')
+    while True:
+        try:
+            if player.is_done():
+                await voice.disconnect()
+                break
+        except:
+            break
 
 bot.run(BOT_USER_TOKEN)
 
